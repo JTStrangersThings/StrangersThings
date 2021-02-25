@@ -15,7 +15,7 @@ const Posts = () => {
     console.log(posts);
 
 
-    if(post.active === true) {
+    
     return ( <div> {posts.map((post, index) => 
         <div>
             <h2>{post.title}</h2>
@@ -26,7 +26,7 @@ const Posts = () => {
             <h3><strong>Will Deliver:</strong> {post.willDeliver}</h3>
             <button>Send Message</button>
         </div> )}
-    </div>)}
+    </div>)
 }
 
 export default Posts;

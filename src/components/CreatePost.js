@@ -90,3 +90,15 @@ export const CreatePostForm = ({
         </div>
     )
 }
+
+handleCheckBox = e => {
+  const {
+    target: { checked },
+  } = e;
+  this.setState({
+    form: {
+      ...this.state.form,
+      checked,
+    }
+  })
+}
