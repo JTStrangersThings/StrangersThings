@@ -15,7 +15,8 @@ import {
     Register,
     Login,
     Profile,
-    Posts
+    Posts,
+    CreatePostForm
 } from './components';
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
     const [registerToken, setRegisterToken] = useState('');
+    const [loginToken, setLoginToken] = useState('');
     const [postId, setPostId] = useState('');
     const [postTitle, setPostTitle] = useState('');
     const [postDescription, setPostDescription] = useState('');
@@ -45,11 +47,19 @@ const App = () => {
                 <Switch>
                 <Route exact path='/'>
                 <Title />
-                <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword}/>
+                <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword}
+                loginToken={loginToken} setLoginToken={setLoginToken}/>
                 </Route>
 
                 <Route exact path='/posts'>
                   <Posts />
+                </Route>
+
+                <Route exact path='/createpost'>
+                    <CreatePostForm loginToken={loginToken} postId={postId} setPostId={setPostId} postTitle={postTitle}
+                    setPostTitle={setPostTitle} postDescription={postDescription} setPostDescription={setPostDescription}
+                    postPrice={postPrice} setPostPrice={setPostPrice} postLocation={postLocation}
+                    setPostLocation={setPostLocation} willDeliver={willDeliver} setWillDeliver={setWillDeliver}/>
                 </Route>
 
                 <Route exact path='/profile'>
