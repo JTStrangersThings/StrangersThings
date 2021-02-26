@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import { getCurrentToken } from '../api';
 
 export const createPost = async ({ 
   loginToken,
@@ -14,7 +15,7 @@ export const createPost = async ({
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${loginToken}`
+          'Authorization': `Bearer ${getCurrentToken()}`
         },
         body: JSON.stringify({
           post: {

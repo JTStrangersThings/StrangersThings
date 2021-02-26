@@ -32,7 +32,7 @@ export default function Post (props) {
             console.log(result);
         })
         .catch(console.error);
-        alert('Your post has been deleted!')
+        alert('Your post has been deleted!');
 
         // const newPosts = post.filter(post => post._id !== postId);
         // setPosts(newPosts);
@@ -58,7 +58,7 @@ export default function Post (props) {
             <button onClick={handleDelete}>Delete</button>
             </div>
         ) :                 
-        <button onClick={() => history.push(`/message/${postId}`)}>
+        <button onClick={() => history.push(`/messages/${postId}`)}>
            Send Message
     </button>}
 

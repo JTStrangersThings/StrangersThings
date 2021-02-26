@@ -1,17 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { fetchPosts } from '../api';
+import { fetchPosts, getCurrentToken } from '../api';
 import { Link, useHistory } from 'react-router-dom';
 import Post from './Post';
 
 
-const Posts = ({ loginToken, setPost }) => {
+const Posts = ({ loginToken, setPost, post }) => {
 
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetchPosts(loginToken)
-        .then(({data}) => setPosts(data.posts));
+        fetchPosts(getCurrentToken())
+        .then(({data}) => setPosts(data.posts))
     }, [])
 
     

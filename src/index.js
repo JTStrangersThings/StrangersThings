@@ -17,9 +17,10 @@ import {
     Profile,
     Posts,
     CreatePostForm,
-    Message,
+    Messages,
     EditPostForm
 } from './components';
+import { clearCurrentToken } from './api';
 
 const App = () => {
 
@@ -45,10 +46,18 @@ const App = () => {
                 <Link to='/home'>Home</Link>
                 <Link to='/posts'>Posts</Link>
                 <Link to='/profile'>Profile</Link>
+                <Link to='/'>Login</Link>
+                <Link to='/register'>Register</Link>
                 <Link to='/'>Logout</Link>
             </nav>
             <main>
                 <Switch>
+
+                <Route exact path='/home'>
+                <Title />
+                <h1>Welcome to your home page! Click the links above to navigate.</h1>
+                </Route>
+
                 <Route exact path='/'>
                 <Title />
                 <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword}
@@ -77,8 +86,8 @@ const App = () => {
                     setConfirmedPassword={setConfirmedPassword} setRegisterToken={setRegisterToken}/>
                 </Route>
 
-                <Route exact path="/message/:postId" >
-                    <Message loginToken={loginToken} />
+                <Route exact path="/messages/:postId" >
+                    <Messages loginToken={loginToken} />
                     {/*Figure out how to get query parameter OR when navigating to this page set state before*/ }
                 </Route>
 

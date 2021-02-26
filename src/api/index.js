@@ -19,13 +19,25 @@ export const fetchPosts = async (token = '') => {
     }
   })
   const data = await response.json();
-  console.log(data);
   return data;
 }
 
 
+export const userProfile = async (token = '') => {
+
+  const response = await fetch('https://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/users/me', {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        })
+        const data = await response.json();
+        return data;
+  }
+
+
+
 export const sendMessage = ({
-  loginToken,
   messageContent,
   postId
 }) => {
@@ -34,7 +46,7 @@ export const sendMessage = ({
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${loginToken}`
+        'Authorization': `Bearer ${getCurrentToken()}`
       },
       body: JSON.stringify({
         message: {

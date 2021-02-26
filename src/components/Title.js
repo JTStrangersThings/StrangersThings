@@ -7,9 +7,9 @@ class Title extends PureComponent {
     <h1>
       Stranger's Things
     </h1>
-    <h5>
+    <h2>
       Buy and sell items from people around the world.
-    </h5>
+    </h2>
   </div>
   }
 }
