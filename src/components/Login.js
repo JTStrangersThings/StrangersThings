@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { storeLoginToken } from '../api';
 
 const Login = ({username, setUsername, password, setPassword, loginToken, setLoginToken}) => {
 
@@ -23,24 +24,22 @@ const loginUser = async (username, password) => {
   return await resp.json();
 };
 
-function getUserToken(token) {
-    localStorage.getItem('token', JSON.stringify(token)); }
-
   const handleClick = (event) => {
     event.preventDefault();
     loginUser(username, password).then((data) => {
 
+
     console.log(data);
     const token = data.data.token;
     setLoginToken(token);
-    localStorage.setItem('loginToken', JSON.stringify(loginToken));
+    storeLoginToken(token);
 
-    console.log(token);
+    console.log(token); 
 
-    setUsername('');
-    setPassword('');
+  })};
 
-    })};
+  if(loginToken) {
+    return <Redirect to = '/home' /> }
 
 
     return (
@@ -50,7 +49,7 @@ function getUserToken(token) {
             <label>Username</label>
             <input type='text' value={username} placeholder='Username' min='8' max='20' required onChange={(e) => setUsername(e.target.value) }></input>
             <label>Password</label>
-            <input type='text' value={password} placeholder='Password' min='8' max='20' required onChange={(e) => setPassword(e.target.value) }></input>
+            <input type='password' value={password} placeholder='Password' min='8' max='20' required onChange={(e) => setPassword(e.target.value) }></input>
             <button type='submit'>Log In</button>
         </form>
         <a href='/register'>Don't have an account? Sign up</a>

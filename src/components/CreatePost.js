@@ -1,27 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
-
-const postProps = {
-  loginToken,
-  postId,
-  setPostId,
-  postDescription, 
-  setPostDescription,
-  postPrice, 
-  setPostPrice,
-  postLocation, 
-  setPostLocation,
-  willDeliver, setWillDeliver
-}
+import { Redirect, Link } from 'react-router-dom';
 
 export const createPost = async ({ 
   loginToken,
   postTitle, 
   postDescription, 
   postPrice, 
-  postLocation }) => {
+  postLocation,
+  willDeliver}) => {
 
-    async function handleClick() {
       await fetch('https://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/posts', {
         method: "POST",
         headers: {
@@ -34,7 +22,7 @@ export const createPost = async ({
             description: postDescription,
             price: postPrice,
             location: postLocation,
-            willDeliver: true
+            willDeliver: willDeliver,
           }
         })
       }).then(response => response.json())
@@ -42,8 +30,9 @@ export const createPost = async ({
           console.log(result);
         })
         .catch(console.error);
-    }
   }
+
+  
 
 export const CreatePostForm = ({ 
   loginToken,
@@ -60,6 +49,8 @@ export const CreatePostForm = ({
   willDeliver, 
   setWillDeliver }) => {
 
+
+
     return (
         <div>
             <h2>Create New Post:</h2>
@@ -67,7 +58,8 @@ export const CreatePostForm = ({
               e.preventDefault();
               console.log(postTitle, loginToken);
               localStorage.getItem(`${loginToken}`);
-              createPost({loginToken, postTitle, postDescription, postPrice, postLocation}) //import postId and/or willDeliver?
+              createPost({loginToken, postTitle, postDescription, postPrice, postLocation, willDeliver, postId}); //import postId and/or willDeliver?
+              alert('Your post has been created!');
 
             }} >
             <label>Title: </label>
@@ -83,9 +75,9 @@ export const CreatePostForm = ({
               <input type='text' required onChange={(e) => setPostLocation(e.target.value)} value={postLocation} >
               </input>
               <label>Will Deliver? </label>
-              <input type='checkbox' checked={checked} required onChange={(event) => setWillDeliver(event.target.checked)} value={willDeliver}>
+              <input type='checkbox' value={willDeliver} onClick={(event) => setWillDeliver(event.target.checked)} >
               </input>
-              <button onClick={handleClick}>Create Post</button>
+              <button type='submit'>Create Post</button>
             </form>
         </div>
     )

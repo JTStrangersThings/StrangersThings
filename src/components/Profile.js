@@ -1,13 +1,14 @@
 import React from 'react';
+import { getCurrentToken } from '../api'
 
-const Profile = async() => {
+const Profile = ({username}) => {
 
-    const userToken = JSON.parse(localStorage.getItem('token'));
+    console.log(username)
 
-    await fetch('https://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/users/me', {
+    fetch('https://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/users/me', {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${userToken}`
+            'Authorization': `Bearer ${getCurrentToken()}`
         },
         }).then(response => response.json())
         .then(result => {
@@ -17,7 +18,7 @@ const Profile = async() => {
 
         return (
             <div>
-                <h1>hi</h1>
+                <h1>Welcome to your profile, {username}!</h1>
             </div>
         )
     }
