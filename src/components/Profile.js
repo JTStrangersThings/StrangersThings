@@ -1,25 +1,45 @@
-import React from 'react';
-import { getCurrentToken } from '../api'
+import React, { useEffect, useState } from 'react';
+import { userProfile } from '../api';
+import { getCurrentToken } from '../api';
+import Post from './Post';
+import Message from './Message';
+import '../components/Profile.css';
+
+
 const Profile = () => {
-    fetch('https://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/users/me', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getCurrentToken()}`
-        },
-        }).then(response => response.json())
-        .then(result => {
-            console.log(result);
-            const messages = result.data.messages;
-            const userPosts = result.data.posts;
-            const username = result.data.username;
-            console.log(messages)
-            console.log(userPosts)
-            console.log(username);
-        })
-        .catch(console.error);
+
+    const [messages, setMessages] = useState([]);
+    const [userPosts, setUserPosts] = useState([]);
+    const [currentUser, setCurrentUser] = useState('');
+
+
+    useEffect(() => {
+        userProfile(getCurrentToken())
+        .then(({data}) => setMessages(data.messages))
+    }, [])
+
+    useEffect(() => {
+        userProfile(getCurrentToken())
+        .then(({data}) => setUserPosts(data.posts))
+    }, [])
+
+    useEffect(() => {
+        userProfile(getCurrentToken())
+        .then(({data}) => setCurrentUser(data.username))
+    }, [])
+
+       
+        console.log(userPosts);
+        console.log(messages)
+    
         return (
-            <div>
-                <h1>Welcome to your profile, !</h1>
+            <div id="profile-page">
+                <h1>Welcome to your profile, {currentUser}!</h1>
+                <div class="profile-messages">
+                <h2>Messages</h2>
+                {messages.map((message, index) => <Message currentUser={currentUser} key={index} message={message}/>)}
+                <h2>Your Posts</h2>
+                {userPosts.map((post, index) => <Post key={index} post={post}/>)}
             </div>
         )
     }

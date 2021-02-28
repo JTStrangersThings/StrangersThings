@@ -3,7 +3,7 @@ import { sendMessage } from '../api'
 import { useParams } from 'react-router-dom';
 
 
-export const Message =  ({ loginToken }) => {
+export const Messages =  () => {
     const [messageContent, setMessageContent] = useState('');
     const { postId } = useParams();
 
@@ -11,7 +11,7 @@ export const Message =  ({ loginToken }) => {
         <div>
             <form onSubmit={e => {
                 e.preventDefault();
-                sendMessage({loginToken, messageContent, postId}) 
+                sendMessage({messageContent, postId}) 
             }}>
             <h2>Send Message</h2> 
             <input type='text' value={messageContent} onChange={(e) => 
@@ -23,4 +23,4 @@ export const Message =  ({ loginToken }) => {
 
 }
 
-export default Message;
+export default Messages;

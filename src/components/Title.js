@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 
- 
+const StyledTitle = styled.h2`
+display: block;
+`
 class Title extends PureComponent {
   render() {
   return <div id="title">
-    <h1>
-      Stranger's Things
-    </h1>
-    <h5>
+    <StyledTitle>
       Buy and sell items from people around the world.
-    </h5>
+    </StyledTitle>
   </div>
   }
 }

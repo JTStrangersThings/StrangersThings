@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { getCurrentToken } from '../api';
+import styled from 'styled-components';
 
 export default function Post (props) {
     const {
@@ -57,8 +58,8 @@ export default function Post (props) {
             <button onClick={() => history.push('/editpost/${postId}')}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
             </div>
-        ) :
-        <button onClick={() => history.push('/message/${postId}')}>
+        ) :                 
+        <button onClick={() => history.push(`/messages/${postId}`)}>
            Send Message
     </button>}
 

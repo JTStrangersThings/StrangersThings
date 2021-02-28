@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
+import styled from 'styled-components';
+import '../src/style.css';
 
 import {
     BrowserRouter as Router,
@@ -17,9 +19,25 @@ import {
     Profile,
     Posts,
     CreatePostForm,
-    Message,
+    Messages,
     EditPostForm
 } from './components';
+import { clearCurrentToken } from './api';
+
+const StyledHeader = styled.header`
+grid-row: 0 / 1;
+grid-column: 1 / 5;
+display: inline;
+width: 95%;
+color: red;
+`;
+
+const StyledNav = styled.nav`
+display: flex;
+align-items: center;
+justifyContent: flex-end;
+align-content: space-between;
+`;
 
 const App = () => {
 
@@ -40,15 +58,25 @@ const App = () => {
     return (
         <Router>
         <div className="app">
-
-            <nav>
-                <Link to='/home'>Home</Link>
-                <Link to='/posts'>Posts</Link>
-                <Link to='/profile'>Profile</Link>
-                <Link to='/'>Logout</Link>
-            </nav>
+            <StyledHeader>
+                <h1>Stranger's Things</h1>
+                <StyledNav>
+                    <Link to='/home'>Home</Link>
+                    <Link to='/posts'>Posts</Link>
+                    <Link to='/profile'>Profile</Link>
+                    <Link to='/'>Login</Link>
+                    <Link to='/register'>Register</Link>
+                    <Link to='/' onClick={() => clearCurrentToken()}>Logout</Link>
+                </StyledNav>
+            </StyledHeader>
             <main>
                 <Switch>
+
+                <Route exact path='/home'>
+                <Title />
+                <h1>Welcome to your home page! Click the links above to navigate.</h1>
+                </Route>
+
                 <Route exact path='/'>
                 <Title />
                 <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword}
@@ -77,8 +105,8 @@ const App = () => {
                     setConfirmedPassword={setConfirmedPassword} setRegisterToken={setRegisterToken}/>
                 </Route>
 
-                <Route exact path="/message/:postId" >
-                    <Message loginToken={loginToken} />
+                <Route exact path="/messages/:postId" >
+                    <Messages loginToken={loginToken} />
                     {/*Figure out how to get query parameter OR when navigating to this page set state before*/ }
                 </Route>
 
