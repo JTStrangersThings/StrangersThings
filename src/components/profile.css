@@ -1,0 +1,7 @@
+.profile-posts {
+    grid-column: 1 / span 2;
+}
+
+.profile-messages {
+    grid-column: 3 / span 2;
+}

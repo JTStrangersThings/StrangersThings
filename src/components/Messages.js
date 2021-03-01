@@ -12,6 +12,7 @@ export const Messages =  () => {
             <form onSubmit={e => {
                 e.preventDefault();
                 sendMessage({messageContent, postId}) 
+                alert('Your message has been sent!')
             }}>
             <h2>Send Message</h2> 
             <input type='text' value={messageContent} onChange={(e) => 

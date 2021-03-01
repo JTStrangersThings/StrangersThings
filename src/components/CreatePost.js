@@ -4,12 +4,12 @@ import { Redirect, Link } from 'react-router-dom';
 import { getCurrentToken } from '../api';
 
 export const createPost = async ({ 
-  loginToken,
   postTitle, 
   postDescription, 
   postPrice, 
   postLocation,
   willDeliver}) => {
+
       await fetch('https://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/posts', {
         method: "POST",
         headers: {
@@ -31,6 +31,9 @@ export const createPost = async ({
         })
         .catch(console.error);
   }
+
+  
+
 export const CreatePostForm = ({ 
   loginToken,
   postId,
@@ -45,6 +48,9 @@ export const CreatePostForm = ({
   setPostLocation,
   willDeliver, 
   setWillDeliver }) => {
+
+
+
     return (
         <div>
             <h2>Create New Post:</h2>
@@ -54,6 +60,7 @@ export const CreatePostForm = ({
               localStorage.getItem(`${loginToken}`);
               createPost({loginToken, postTitle, postDescription, postPrice, postLocation, willDeliver, postId}); //import postId and/or willDeliver?
               alert('Your post has been created!');
+
             }} >
             <label>Title: </label>
               <input type='text' required onChange={(e) => setPostTitle(e.target.value)} value={postTitle} >

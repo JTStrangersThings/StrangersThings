@@ -1,0 +1,22 @@
+.post-card {
+    background-color: #22334f;
+    border-style: solid;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.post-title {
+    color: whitesmoke;
+    padding: 10px 10px 10px 10px;
+}
+
+.post-content {
+    background-color: whitesmoke;
+    padding: 10px 10px 10px 10px;
+}
+
+.post-card-button {
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

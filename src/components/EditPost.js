@@ -1,31 +1,16 @@
 import React from 'react';
 import { getCurrentToken } from '../api';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
-export const handleEdit = ({ props
-// loginToken,
-//   post,
-//   postTitle, 
-//   postDescription, 
-//   postPrice, 
-//   postLocation,
-//   willDeliver
+export const handleEdit = ({
+loginToken,
+  postTitle, 
+  postDescription, 
+  postPrice, 
+  postLocation,
+  willDeliver
 }) => {
-
-    const {
-        posts,
-        loginToken,
-    } = props;
-
-    const { 
-        postId,
-        postTitle, 
-        postDescription, 
-        postPrice, 
-        postLocation,
-        willDeliver
-    } = props.posts;
 
     fetch(`http://strangers-things.herokuapp.com/api/2010-UNF-RM-WEB-PT/posts/${postId}`, {
       method: "PATCH",

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import '../components/register.css';
 
 
 const Register = ( { username, password, confirmedPassword, registerToken, setRegisterToken, setUsername, setPassword, setConfirmedPassword}) => {
@@ -38,16 +39,23 @@ const Register = ( { username, password, confirmedPassword, registerToken, setRe
 
     
     return (
-        <div>
-        <form onSubmit={handleClick}>
+        <div className="register-container">
+        <form className="register-form" onSubmit={handleClick}>
             <h2>Register below:</h2>
-            <label>Create a Username</label>
+            <label className="register-label">Create a Username</label>
+            <br></br>
             <input type='text' value={username} placeholder='Username' min='8' max='20' required onChange={(e) => setUsername(e.target.value) }></input>
-            <label>Create a Password</label>
-            <input type='text' value={password} placeholder='Password' min='8' max='20' required onChange={(e) => setPassword(e.target.value) }></input>
-            <label>Confirm Your Password</label>
-            <input type='text' value={confirmedPassword} placeholder='Confirm Password' min='8' max='20' required onChange={(e) => setConfirmedPassword(e.target.value) }></input>
+            <br></br>
+            <label className="register-label">Create a Password</label>
+            <br></br>
+            <input type='password' value={password} placeholder='Password' min='8' max='20' required onChange={(e) => setPassword(e.target.value) }></input>
+            <br></br>
+            <label className="register-label">Confirm Your Password</label>
+            <br></br>
+            <input type='password' value={confirmedPassword} placeholder='Confirm Password' min='8' max='20' required onChange={(e) => setConfirmedPassword(e.target.value) }></input>
+            <div className="register-button">
             <button type='submit'>Register</button>
+            </div>
         </form>
         <a href='/'>Already have an account? Sign in</a>
         </div>
